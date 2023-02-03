@@ -13,16 +13,25 @@
     "build:mac": "pkg src/index.js -t macos -o dist/start_mac.dmg",
     "build:dev": "pkg src/index.js -t win -o start_dev.exe",
     "format": "prettier --write .",
-    "backup": "git add . && git commit -m \"chore: save the coding progress\" && git push"
+    "backup": "git add . && git commit -m \"chore: backup\" && git push",
+    "up": "npx npm-check-updates -u",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@bassist/node-utils": "^0.2.0",
+    "@bassist/utils": "^0.9.0",
+    "@withtypes/fs-extra": "^0.1.1"
   },
   "devDependencies": {
-    "eslint": "^8.6.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "lint-staged": "^12.1.5",
-    "prettier": "^2.5.1"
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "lint-staged": "^13.1.0",
+    "pkg": "^5.8.0",
+    "prettier": "^2.8.3",
+    "simple-git-hooks": "^2.8.1"
   },
-  "gitHooks": {
+  "simple-git-hooks": {
     "pre-commit": "lint-staged --concurrent false"
   },
   "lint-staged": {
