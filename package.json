@@ -2,7 +2,7 @@
   "name": "node-pkg-starter",
   "version": "0.0.0",
   "description": "A program template for Node.js project, use pkg to packaged.",
-  "author": "chengpeiquan",
+  "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
   "main": "src/index.js",
   "license": "MIT",
   "private": true,
