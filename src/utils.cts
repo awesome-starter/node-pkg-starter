@@ -1,10 +1,4 @@
-/**
- * Confirm Exit
- * @param {string} msg - The message to displayed on console.
- */
-module.exports = function (msg) {
-  console.log('')
-  console.log(msg)
+export function confirmExit() {
   console.log('')
   console.log(`Press any key to exit…`)
   process.stdin.setRawMode(true)

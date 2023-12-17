@@ -1,41 +1,54 @@
 {
   "name": "node-pkg-starter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A program template for Node.js project, use pkg to packaged.",
   "author": "chengpeiquan <chengpeiquan@chengpeiquan.com>",
-  "main": "src/index.js",
   "license": "MIT",
   "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "bin": "src/index.ts",
+  "pkg": {
+    "scripts": "dist/**/*.js",
+    "assets": "dist/**/*"
+  },
   "scripts": {
-    "dev": "node src/index.js",
-    "build": "npm run build:win && npm run build:mac",
-    "build:win": "pkg src/index.js -t win -o dist/start_win.exe",
-    "build:mac": "pkg src/index.js -t macos -o dist/start_mac.dmg",
-    "build:dev": "pkg src/index.js -t win -o start_dev.exe",
+    "start": "cross-env NODE_ENV=dev tsx ./src/index.cts",
+    "build": "run-s build:*",
+    "build:lib": "tsup --config tsup.config.mts",
+    "build:win": "pkg ./lib/index.cjs -t win -o dist/start_win.exe",
+    "build:mac": "pkg ./lib/index.cjs -t macos -o dist/start_mac.dmg",
+    "lint": "eslint .",
     "format": "prettier --write .",
     "backup": "git add . && git commit -m \"chore: backup\" && git push",
     "up": "npx npm-check-updates -u",
-    "prepare": "simple-git-hooks"
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@bassist/node-utils": "^0.2.0",
-    "@bassist/utils": "^0.9.0",
-    "@withtypes/fs-extra": "^0.1.1"
+    "@bassist/node-utils": "^0.3.0",
+    "@bassist/utils": "^0.14.0",
+    "@withtypes/fs-extra": "^0.1.1",
+    "chalk": "4.1.2"
   },
   "devDependencies": {
-    "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "pkg": "^5.8.0",
-    "prettier": "^2.8.3",
-    "simple-git-hooks": "^2.8.1"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged --concurrent false"
+    "@bassist/commit": "^0.1.0",
+    "@bassist/eslint": "^0.5.0",
+    "@bassist/tsconfig": "^0.1.1",
+    "@types/node": "^20.10.4",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "npm-run-all": "^4.1.5",
+    "pkg": "^5.8.1",
+    "prettier": "^3.1.1",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write .",
+    "*.{js,cjs,mjs,ts,cts,mts}": [
+      "prettier --write",
       "eslint --fix"
     ]
   }

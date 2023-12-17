@@ -1,0 +1,21 @@
+{
+  "extends": "@bassist/tsconfig/node.json",
+  "compilerOptions": {
+    "importHelpers": true,
+    "allowImportingTsExtensions": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "experimentalDecorators": true,
+    "noEmit": false,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "bundle",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["node"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
